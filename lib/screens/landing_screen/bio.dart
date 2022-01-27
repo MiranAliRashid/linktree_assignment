@@ -50,12 +50,11 @@ class _BioState extends State<Bio> {
                       alignment: Alignment.bottomCenter,
                       children: [
                         Container(
-                          width: 120,
+                          width: 220,
                           // height: 120,
                           child: Image.network(
                             _users[0].profileImg.toString(),
-                            width: 150,
-                            height: 100,
+                            height: 200,
                           ),
                         ),
                         Container(
