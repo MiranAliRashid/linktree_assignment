@@ -11,9 +11,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  String name = 'user name';
-  String? password;
-  String? theLoggedInUser;
+  late String email;
+  late String password;
+  late String theLoggedInUser;
 
   TextEditingController _userNameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
@@ -28,11 +28,11 @@ class _LoginScreenState extends State<LoginScreen> {
         margin: EdgeInsets.all(15),
         child: Column(
           children: [
-            Text('Welcome $name'),
+            // Text('Welcome $email'),
             Form(
                 child: Column(
               children: [
-                Text('the logged in user: $theLoggedInUser'),
+                // Text('the logged in user: $theLoggedInUser'),
 
                 //user name
                 TextFormField(
@@ -50,27 +50,29 @@ class _LoginScreenState extends State<LoginScreen> {
                   obscureText: true,
                   decoration: generalInputDecoration(labelText: 'Password'),
                 ),
+                const SizedBox(
+                  height: 10,
+                ),
                 ElevatedButton.icon(
                   onPressed: () async {
                     setState(() {
-                      name = _userNameController.value.text;
+                      email = _userNameController.value.text;
                       password = _passwordController.value.text;
                     });
-                    name = name.trim(); //remove spaces
-                    name = name.toLowerCase(); //convert to lowercase
+                    email = email.trim(); //remove spaces
+                    email = email.toLowerCase(); //convert to lowercase
 
                     await Provider.of<AuthService>(context, listen: false)
-                        .loginWithEmailAndPassword(name, password!)
+                        .loginWithEmailAndPassword(email, password)
                         .then((value, {Function? onError}) {
                       if (onError == false) {
+                        print("there is error null or empty");
+                      } else {
                         setState(() {
                           theLoggedInUser = value!.user!.uid;
                         });
-                      } else {
-                        print("there is error null or empty");
+                        Navigator.pop(context);
                       }
-
-                      // Navigator.pop(context);
                     });
                   },
                   icon: Icon(
@@ -80,7 +82,20 @@ class _LoginScreenState extends State<LoginScreen> {
                     'Login',
                   ),
                 ),
-
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("you don't have an account "),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, "/register");
+                        },
+                        child: Text("Register here!"))
+                  ],
+                ),
                 //error
                 Provider.of<AuthService>(context).theError == null
                     ? Container()

@@ -7,8 +7,10 @@ class UserModel {
   String? bio;
   String? title;
   String? location;
-  List<dynamic>? socialLink;
-  List<dynamic>? contact;
+  String? linkGitHub;
+  String? linkStakOverFlow;
+  String? linkLinkedIn;
+  String? phone;
 
   UserModel(
       {this.userId,
@@ -19,8 +21,10 @@ class UserModel {
       this.bio,
       this.title,
       this.location,
-      this.socialLink,
-      this.contact});
+      this.linkGitHub,
+      this.linkStakOverFlow,
+      this.linkLinkedIn,
+      this.phone});
 
   factory UserModel.fromMap(Map<String, dynamic> json) => UserModel(
         userId: json["userId"],
@@ -31,8 +35,10 @@ class UserModel {
         bio: json["bio"],
         title: json["title"],
         location: json["location"],
-        socialLink: json["socialLink"],
-        contact: json["contact"],
+        linkGitHub: json["linkGitHub"],
+        linkStakOverFlow: json["linkStakOverFlow"],
+        linkLinkedIn: json["linkLinkedIn"],
+        phone: json["phone"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -44,7 +50,9 @@ class UserModel {
         "bio": bio,
         "title": title,
         "location": location,
-        "socialLink": socialLink,
-        "contact": contact
+        "linkGitHub": linkGitHub,
+        "linkStakOverFlow": linkStakOverFlow,
+        "linkLinkedIn": linkLinkedIn,
+        "phone": phone,
       };
 }

@@ -5,7 +5,8 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:biolinktree_assignment/screens/bio.dart';
+import 'package:biolinktree_assignment/appConfig.dart';
+import 'package:biolinktree_assignment/screens/landing_screen/bio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -14,7 +15,7 @@ import 'package:biolinktree_assignment/main.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(Bio());
+    await tester.pumpWidget(AppConfig());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

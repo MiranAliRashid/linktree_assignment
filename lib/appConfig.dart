@@ -1,5 +1,6 @@
 import 'package:biolinktree_assignment/screens/login_screen/login_screen_view.dart';
 import 'package:biolinktree_assignment/screens/registeration_screen/register_screen.dart';
+import 'package:biolinktree_assignment/services/auth_handler.dart';
 import 'package:flutter/material.dart';
 
 class AppConfig extends StatefulWidget {
@@ -15,7 +16,8 @@ class _AppConfigState extends State<AppConfig> {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/': (context) => LoginScreen(),
+        '/': (context) => AuthHandler(),
+        '/login': (context) => LoginScreen(),
         '/register': (context) => RegisterScreen(),
       },
     );
